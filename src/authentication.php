@@ -1,9 +1,29 @@
 <?php
 require 'config.php';
-require 'class/User.php';
-require 'class/Database.php';
+require_once 'class/User.php';
+require_once 'class/Database.php';
 
-if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) && !empty($_POST['password']) && !empty($_POST['password2']) && isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['password2'])) {
-    $Nom = htmlentities($_POST['nom']);
-    $Prenom = htmlentities($_POST['prenom']);
+
+
+if (!empty($_POST['mail']) && !empty($_POST['password']) && isset($_POST['mail']) && isset($_POST['password'])) {
+    // # On instancie un object Database
+    // $database = new Database();
+    // # On fait appel à la fonction LogIn de l'object database
+    // $user = $database->tryLogIn($_POST['mail'], $_POST['password']);
+
+    // # $loginSuccess = $database->tryLogIn($_POST['mail'], $_POST['password']);
+
+    // # Si un utilisateur est trouvé
+    // #if (loginSuccess){
+    // if ($user !== null) {
+    //     header('localisation : ../comptePerso.php');
+    //     var_dump("utilisateur trouver et bon mot de passe");
+    // #Si non
+    // } else {
+    //     header('localisation : ../confirmation.php?erreur=' . 7);
+    //     var_dump("Pas d'utilisateur trouvé ou mauvaise mot de passe");
+    // }
+} else {
+    header('localisation : ../confirmation.php?erreur=' . 7);
+    var_dump("Données vides");
 }

@@ -1,4 +1,8 @@
 <?php
+$code_erreur = null;
+if (isset($_GET['erreur'])) {
+    $code_erreur = (int) $_GET['erreur'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,13 +22,14 @@
         <input type="email" id="mail" name="mail" required>
         <?php
         if ($code_erreur === 1) {
-        ?><p class='error'>Le mail n'est pas valide."</p>
+        ?>
+            <p class='error'>Le mail n'est pas valide."</p>
         <?php } ?>
 
         <label for="password">Mot de passe :</label>
         <input type="password" id="password" name="password" required>
-        <?php if ($code_erreur === 2) { ?>
-            <p class='message error'>Tout les champs doivent être remplis.</p>
+        <?php if ($code_erreur === 7) { ?>
+            <p class='message error'>Mauvais password</p>
         <?php } ?>
         <input type="submit" name="submit" value="Se connecter">
     </form>

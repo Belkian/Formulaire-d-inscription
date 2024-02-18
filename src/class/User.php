@@ -6,14 +6,18 @@ class User
     private $_Prenom;
     private $_password;
     private $_Mail;
+    // #
+    // private $_logged;
 
-    public function __construct(string $Nom, string $Prenom, string $password, string $Mail, int|string $id = "à créer")
+    public function __construct(string $Nom, string $Prenom, string $password, string $Mail, int|string $id = "à créer", bool $logged = false)
     {
         $this->setId($id);
         $this->setNom($Nom);
         $this->setPrenom($Prenom);
         $this->setpassword($password);
         $this->setMail($Mail);
+        // #
+        // $this->setLogged($logged);
     }
 
     public function getId(): int
@@ -65,6 +69,25 @@ class User
     {
         $this->_Mail = $Mail;
     }
+
+    #
+    // public function getLogged(): bool
+    // {
+    //     return $this->_logged;
+    // }
+
+    // public function setLogged(bool $logged)
+    // {
+    //     $this->_logged = $logged;
+    // }
+
+    // public function logIn() {
+    //     $this->setLogged(true);
+    // }
+    // public function logOut() {
+    //     $this->setLogged(false);
+    // }
+
     public function getObjectToArray(): array
     {
         return [
@@ -72,15 +95,14 @@ class User
             'Nom' => $this->getNom(),
             'Prenom' => $this->getPrenom(),
             'Mail' => $this->getMail(),
-            'password' => $this->getpassword()
+            'password' => $this->getpassword(),
+            // 'logged' => $this->getLogged()
         ];
     }
-
     public function passwordverify(string $password): bool
     {
         return password_verify($password, $this->getpassword());
     }
-
     public function id_utilisateur()
     {
         $Database = new Database();

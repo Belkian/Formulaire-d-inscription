@@ -2,7 +2,7 @@
 require 'config.php';
 require 'class/User.php';
 require 'class/Database.php';
-//$user = new User($_POST['prenom']);
+
 if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) && !empty($_POST['password']) && !empty($_POST['password2']) && isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['password2'])) {
   $Nom = htmlentities($_POST['nom']);
   $Prenom = htmlentities($_POST['prenom']);
@@ -29,14 +29,15 @@ if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) 
   // action finale
   $Data_base = new Database();
   $User = new User($Nom, $Prenom, $password, $Mail);
-  $Data_base->saveUtilisateur($User);
 
   if (($Data_base->saveUtilisateur($User)) == true) {
     header('location: /../confirmation.php');
   } else {
     header('location: /../index.php?message=' . ERREUR_ENREGISTREMENT);
   }
-  header('location: /../index.php?message=succes');
 } else {
   header('location: /../index.php?message=' . ERREUR_CHAMP_VIDE);
+}
+if ($_POST['connect']) {
+  header('localisation : /../confirmation.php');
 }

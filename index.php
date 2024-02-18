@@ -17,7 +17,7 @@ if (isset($_GET['erreur'])) {
 </head>
 
 <body>
-  <form action="src/traitement.php" method="post" onsubmit="return Validation()">
+  <form action="/src/traitement.php" method="post" onsubmit="return Validation()">
     <h1>Formulaire d'inscription à la Newsletter</h1>
 
     <label for="nom">Nom :</label>
@@ -47,6 +47,9 @@ if (isset($_GET['erreur'])) {
       <p class='message error'>Tout les champs doivent être remplis.</p>
     <?php } ?>
     <input type="submit" name="submit" value="S'inscrire">
+  </form>
+  <form action="/src/traitement.php" method="post" onsubmit="return Validation()">
+    <input type="submit" name="connect" value="Se connecter">
   </form>
 </body>
 
