@@ -31,13 +31,10 @@ if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['mail']) 
   $User = new User($Nom, $Prenom, $password, $Mail);
 
   if (($Data_base->saveUtilisateur($User)) == true) {
-    header('location: /../confirmation.php');
+    header('location: /../connexion.php');
   } else {
     header('location: /../index.php?message=' . ERREUR_ENREGISTREMENT);
   }
 } else {
   header('location: /../index.php?message=' . ERREUR_CHAMP_VIDE);
-}
-if ($_POST['connect']) {
-  header('localisation : /../confirmation.php');
 }

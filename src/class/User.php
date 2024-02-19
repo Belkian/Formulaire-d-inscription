@@ -7,17 +7,30 @@ class User
     private $_password;
     private $_Mail;
     // #
-    // private $_logged;
-
-    public function __construct(string $Nom, string $Prenom, string $password, string $Mail, int|string $id = "à créer", bool $logged = false)
+    private $_logged;
+    /**
+     * [__construct description]
+     *
+     * @param   string  $Nom       [$Nom description]
+     * @param   string  $Prenom    [$Prenom description]
+     * @param   string  $password  [$password description]
+     * @param   string  $Mail      [$Mail description]
+     * @param   int                [ description]
+     * @param   string  $id        [$id description]
+     * @param   bool    $logged    [$logged description]
+     * @param   false              [ description]
+     *
+     * @return  [type]             [return description]
+     */
+    public function __construct(string $Nom, string $Prenom, string $Mail, string $password, int|string $id = "à créer", bool $logged = false)
     {
         $this->setId($id);
         $this->setNom($Nom);
         $this->setPrenom($Prenom);
-        $this->setpassword($password);
         $this->setMail($Mail);
+        $this->setpassword($password);
         // #
-        // $this->setLogged($logged);
+        $this->setLogged($logged);
     }
 
     public function getId(): int
@@ -71,22 +84,24 @@ class User
     }
 
     #
-    // public function getLogged(): bool
-    // {
-    //     return $this->_logged;
-    // }
+    public function getLogged(): bool
+    {
+        return $this->_logged;
+    }
 
-    // public function setLogged(bool $logged)
-    // {
-    //     $this->_logged = $logged;
-    // }
+    public function setLogged(bool $logged)
+    {
+        $this->_logged = $logged;
+    }
 
-    // public function logIn() {
-    //     $this->setLogged(true);
-    // }
-    // public function logOut() {
-    //     $this->setLogged(false);
-    // }
+    public function logIn()
+    {
+        $this->setLogged(true);
+    }
+    public function logOut()
+    {
+        $this->setLogged(false);
+    }
 
     public function getObjectToArray(): array
     {
@@ -96,13 +111,15 @@ class User
             'Prenom' => $this->getPrenom(),
             'Mail' => $this->getMail(),
             'password' => $this->getpassword(),
-            // 'logged' => $this->getLogged()
+            'logged' => $this->getLogged()
         ];
     }
+
     public function passwordverify(string $password): bool
     {
         return password_verify($password, $this->getpassword());
     }
+
     public function id_utilisateur()
     {
         $Database = new Database();
@@ -122,7 +139,6 @@ class User
                 break;
             }
         }
-
         return $i;
     }
 }
